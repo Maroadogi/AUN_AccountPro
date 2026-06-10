@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SavedInquiry } from "./types";
 import { SERVICES_DATA, TARIFF_PLANS, WHY_CHOOSE_US } from "./data";
+import Logo from "./components/Logo";
 import { motion } from "motion/react";
 
 // Custom Subcomponents
@@ -195,7 +196,7 @@ export default function App() {
               <img
                 className="w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuY9uaE8AQOmlMq3qgfqKUR4pQCparMTPUAiNrUM3LuhOwA5MQEdxYP_Xg-XkMGmLSmcYjotF3kWtySxUGmqKZsh1jaW2BpTgcfgeJ7k_La48c5vYGdG5zmpY8yKD5UI6ocFPNXe77jZXmLV9uNlioi2coRYF3CbCMaqMaX-sGb_9IprBQEyNXoCBKieA3SNJXuCX4QTN8SeZivh4Pn09YxGEGbhmou3C7DWPiTjNiPTwjYmKoh8BeuA2IFZRm8_rtm4OcYNLIkYk"
-                alt="AccountPro Professional Accountant"
+                alt="АудитУчетНалоги Professional Accountant"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-dark/35 to-transparent pointer-events-none" />
@@ -322,7 +323,7 @@ export default function App() {
                 <img
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOUEFezM-b3cHG0BhmR9FAXM08hfuBGgjbIUUJObEll96xfZ6FixknRoSZ0HzGzY5NDBLWFiMY06lqbDvsLkxiS38XLsaZSXqT3VUoLt4INshY06t6zurIv6kCcchIXn6HejHryOMFqsEBFUHnhPbKn2z2LSFWsk-uH9HrfFRuTwIwmwsmIvDBXzBpZAo-GQun0dcP6lOyTyzCnWrvnjFAr9K_h6XCGxfmyVHYzxoybeBxl9UjjNNdolVtqPjfCG5_d7BU3-JdLBc"
-                  alt="AccountPro Meeting Room"
+                  alt="АудитУчетНалоги Meeting Room"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
@@ -344,7 +345,7 @@ export default function App() {
                 </span>
                 <h2 className="font-headline text-3xl md:text-4xl font-semibold text-ink-dark tracking-tight leading-tight">
                   Почему ответственные <br />
-                  компании выбирают AccountPro?
+                  компании выбирают АудитУчетНалоги?
                 </h2>
               </motion.div>
 
@@ -544,17 +545,15 @@ export default function App() {
           <div className="flex flex-col gap-4 text-left">
             <a
               href="#"
-              className="font-headline text-2xl font-bold tracking-tight text-white flex items-center gap-2 select-none"
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              <span className="bg-white text-ink-dark p-1 rounded">AP</span>
-              <span>AccountPro</span>
+              <Logo textClassName="font-sans font-extrabold tracking-tight text-xl md:text-2xl text-white" />
             </a>
             <p className="font-sans text-[13px] text-gray-400">
-              © 2026 AccountPro. Все права защищены. Надежный финтех партнер в мире налогов и отчетности.
+              © 2026 АудитУчетНалоги. Все права защищены. Надежный финтех партнер в мире налогов и отчетности.
             </p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 justify-center">

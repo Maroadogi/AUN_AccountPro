@@ -10,7 +10,7 @@ export default function TelegramConsultant({ onSelectTariff }: TelegramConsultan
   const [messages, setMessages] = useState<Array<{ sender: "user" | "bot"; text: string; time: string }>>([
     {
       sender: "bot",
-      text: "Здравствуйте! Меня зовут Анна, я ведущий финансовый эксперт AccountPro. Чем я могу помочь вам сегодня?",
+      text: "Здравствуйте! Меня зовут Анна, я ведущий финансовый эксперт АудитУчетНалоги. Чем я могу помочь вам сегодня?",
       time: new Date().toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" }),
     },
   ]);
@@ -91,7 +91,7 @@ export default function TelegramConsultant({ onSelectTariff }: TelegramConsultan
               </div>
               <div>
                 <h4 className="font-semibold text-sm leading-tight">Анна Новоселова</h4>
-                <span className="text-[11px] text-gray-400">AccountPro • Консультант online</span>
+                <span className="text-[11px] text-gray-400">АудитУчетНалоги • Консультант online</span>
               </div>
             </div>
             <button

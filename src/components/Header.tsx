@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, UserCheck } from "lucide-react";
 import { motion } from "motion/react";
+import Logo from "./Logo";
 
 interface HeaderProps {
   onOpenConsultation: () => void;
@@ -75,14 +76,12 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <a
             href="#"
-            className="font-headline text-2xl font-bold tracking-tight text-ink-dark flex items-center gap-2 select-none"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <span className="bg-ink-dark text-white p-1 rounded">AP</span>
-            <span>AccountPro</span>
+            <Logo />
           </a>
 
           {/* Desktop Navigation */}

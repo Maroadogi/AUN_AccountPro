@@ -56,8 +56,8 @@ const OFFICES_DATA: OfficeInfo[] = [
     pointsOfInterest: [
       {
         id: "office-msk",
-        label: "Офис AccountPro",
-        shortLabel: "AccountPro",
+        label: "Офис АудитУчетНалоги",
+        shortLabel: "АудитУчетНалоги",
         details: "Башня Федерация Восток, 45 этаж. Для входа понадобится паспорт. Закажите пропуск за 15 минут.",
         x: 50,
         y: 40
@@ -105,8 +105,8 @@ const OFFICES_DATA: OfficeInfo[] = [
     pointsOfInterest: [
       {
         id: "office-spb",
-        label: "Офис AccountPro СПБ",
-        shortLabel: "AccountPro СПБ",
+        label: "Офис АудитУчетНалоги СПБ",
+        shortLabel: "АудитУчетНалоги СПБ",
         details: "БЦ 'Лайт-Хаус', 6 этаж. Комфортная переговорная зона, охраняемая территория, вход по документам.",
         x: 50,
         y: 45
@@ -493,7 +493,7 @@ export default function ContactsSection() {
                       width="100%"
                       height="100%"
                       className="border-0 m-0 p-0 block filter contrast-125 saturate-[0.85]"
-                      title="Адрес офиса AccountPro"
+                      title="Адрес офиса АудитУчетНалоги"
                       src={currentOffice.osmUrl}
                       referrerPolicy="no-referrer"
                     />
