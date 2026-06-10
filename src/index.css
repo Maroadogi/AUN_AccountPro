@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #f9f9fb;
+  --color-surface-dim: #d9dadc;
+  --color-surface-bright: #f9f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f5;
+  --color-surface-container: #edeef0;
+  --color-surface-container-high: #e8e8ea;
+  --color-surface-container-highest: #e2e2e4;
+  --color-on-surface: #1a1c1d;
+  --color-on-surface-variant: #49454d;
+  --color-inverse-surface: #2f3132;
+  --color-inverse-on-surface: #f0f0f2;
+  --color-outline: #7a757d;
+  --color-outline-variant: #cbc4cd;
+  --color-surface-tint: #645978;
+  --color-primary-color: #000000;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #201731;
+  --color-on-primary-container: #8a7e9f;
+  --color-inverse-primary: #cec0e4;
+  --color-secondary-color: #006d41;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #7dfbb3;
+  --color-on-secondary-container: #007345;
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #1e0060;
+  --color-on-tertiary-container: #8a6aff;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #ebddff;
+  --color-primary-fixed-dim: #cec0e4;
+  --color-on-primary-fixed: #201731;
+  --color-on-primary-fixed-variant: #4c425f;
+  --color-secondary-fixed: #7dfbb3;
+  --color-secondary-fixed-dim: #5fdd99;
+  --color-on-secondary-fixed: #002110;
+  --color-on-secondary-fixed-variant: #005230;
+  --color-tertiary-fixed: #e7deff;
+  --color-tertiary-fixed-dim: #ccbeff;
+  --color-on-tertiary-fixed: #1e0060;
+  --color-on-tertiary-fixed-variant: #4c1ac4;
+  --color-background: #f9f9fb;
+  --color-on-background: #1a1c1d;
+  --color-surface-variant: #e2e2e4;
+  --color-slate-blue: #8EA3CC;
+  --color-ink-dark: #110822;
+  --color-mint-action: #2AB272;
+  --color-lavender-accent: #592FD1;
+  --color-paper-white: #FFFFFF;
+
+  --font-headline: "Hanken Grotesk", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink-dark);
+    font-family: var(--font-sans);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "AccountPro",
+  "description": "Профессиональный бухгалтерский аутсорсинг и налоговое сопровождение для бизнеса.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
