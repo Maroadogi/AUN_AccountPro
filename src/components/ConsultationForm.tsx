@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Mail, Briefcase, Phone, Send, Sparkles, CheckCircle2 } from "lucide-react";
 import { SavedInquiry } from "../types";
+import { motion } from "motion/react";
 
 interface ConsultationFormProps {
   selectedTariff?: string;
@@ -22,6 +23,7 @@ export default function ConsultationForm({
   const [tariff, setTariff] = useState(selectedTariff);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   // Sync state if selected tariff from outside changes
   useEffect(() => {
@@ -33,9 +35,10 @@ export default function ConsultationForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !companyName) {
-      alert("Пожалуйста, заполните почту и название компании.");
+      setValidationError("Пожалуйста, заполните поле Email и название вашей организации.");
       return;
     }
+    setValidationError(null);
 
     setIsSubmitting(true);
 
@@ -69,7 +72,13 @@ export default function ConsultationForm({
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-lavender-accent/10 rounded-full blur-3xl -z-10" />
       <div className="absolute bottom-0 right-10 w-[400px] h-[400px] bg-mint-action/5 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7 }}
+        className="max-w-4xl mx-auto px-6 relative z-10"
+      >
         {!isSubmitted ? (
           <div className="text-center">
             <h2 className="font-headline text-3xl md:text-4xl font-semibold mb-6 max-w-2xl mx-auto">
@@ -80,6 +89,12 @@ export default function ConsultationForm({
             </p>
 
             <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-xl backdrop-blur-md text-left">
+              {validationError && (
+                <div className="bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs p-4 rounded mb-5 font-sans font-medium">
+                  {validationError}
+                </div>
+              )}
+
               {calculatorDetails && (
                 <div className="bg-lavender-accent/20 border border-lavender-accent/30 p-4 rounded mb-6 flex justify-between items-center text-xs animate-pulse">
                   <div>
@@ -179,14 +194,17 @@ export default function ConsultationForm({
               </div>
 
               {/* Submit button */}
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-mint-action hover:bg-mint-action/90 text-white font-sans text-base font-semibold tracking-wider py-4 rounded transition-all duration-200 cursor-pointer disabled:opacity-50 active:scale-95 flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.025, y: -1, boxShadow: "0 12px 20px -5px rgba(42, 178, 114, 0.3)" }}
+                whileTap={{ scale: 0.985 }}
+                transition={{ type: "spring", stiffness: 450, damping: 15 }}
+                className="w-full bg-mint-action text-white font-sans text-base font-semibold tracking-wider py-4 rounded cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {isSubmitting ? "Отправка..." : "Получить бесплатное предложение"}
                 <Send className="w-4 h-4" />
-              </button>
+              </motion.button>
 
               <p className="text-center text-[11px] text-gray-500 mt-4">
                 Нажимая кнопку, вы соглашаетесь на обработку персональных данных и передачу на бесплатный аудит.
@@ -227,7 +245,7 @@ export default function ConsultationForm({
             </button>
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }

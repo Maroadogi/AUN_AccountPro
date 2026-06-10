@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Calculator, Check, ArrowRight, Sparkles, Building2, User } from "lucide-react";
+import { motion } from "motion/react";
 
 interface PricingCalculatorProps {
   onSelectCalculatedPlan: (planName: string, calculatedPrice: number, details: string) => void;
@@ -90,7 +91,13 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
+        >
           {/* Controls */}
           <div className="lg:col-span-7 bg-white p-6 md:p-8 rounded border border-slate-blue/20 flex flex-col justify-between">
             <div className="space-y-6">
@@ -100,30 +107,36 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
                   Организационно-правовая форма
                 </label>
                 <div className="grid grid-cols-2 gap-4">
-                  <button
+                  <motion.button
                     type="button"
                     onClick={() => setLegalForm("IP")}
-                    className={`py-3 px-4 rounded border flex items-center justify-center gap-2 font-sans font-medium text-[15px] transition-all cursor-pointer ${
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className={`py-3 px-4 rounded border flex items-center justify-center gap-2 font-sans font-medium text-[15px] cursor-pointer ${
                       legalForm === "IP"
-                        ? "border-mint-action bg-mint-action/5 text-mint-action font-semibold"
-                        : "border-slate-blue/20 text-on-surface-variant hover:border-ink-dark"
+                        ? "border-mint-action bg-mint-action/5 text-mint-action font-bold"
+                        : "border-slate-blue/20 text-on-surface-variant"
                     }`}
                   >
                     <User className="w-4 h-4" />
                     Индивидуальный предприниматель (ИП)
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     type="button"
                     onClick={() => setLegalForm("OOO")}
-                    className={`py-3 px-4 rounded border flex items-center justify-center gap-2 font-sans font-medium text-[15px] transition-all cursor-pointer ${
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className={`py-3 px-4 rounded border flex items-center justify-center gap-2 font-sans font-medium text-[15px] cursor-pointer ${
                       legalForm === "OOO"
-                        ? "border-mint-action bg-mint-action/5 text-mint-action font-semibold"
-                        : "border-slate-blue/20 text-on-surface-variant hover:border-ink-dark"
+                        ? "border-mint-action bg-mint-action/5 text-mint-action font-bold"
+                        : "border-slate-blue/20 text-on-surface-variant"
                     }`}
                   >
                     <Building2 className="w-4 h-4" />
                     Юридическое лицо (ООО)
-                  </button>
+                  </motion.button>
                 </div>
               </div>
 
@@ -138,19 +151,22 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
                     { value: "USN_15", label: "УСН 15%", desc: "Дох. минус Расх." },
                     { value: "OSNO", label: "ОСНО", desc: "Общая (с НДС)" },
                   ].map((sys) => (
-                    <button
+                    <motion.button
                       key={sys.value}
                       type="button"
                       onClick={() => setTaxSystem(sys.value as any)}
-                      className={`p-3 rounded border flex flex-col items-center justify-center transition-all cursor-pointer ${
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                      className={`p-3 rounded border flex flex-col items-center justify-center cursor-pointer ${
                         taxSystem === sys.value
-                          ? "border-mint-action bg-mint-action/5 text-mint-action font-semibold"
-                          : "border-slate-blue/20 text-on-surface-variant hover:border-ink-dark"
+                          ? "border-mint-action bg-mint-action/5 text-mint-action font-bold"
+                          : "border-slate-blue/20 text-on-surface-variant"
                       }`}
                     >
                       <span className="text-[15px] font-bold">{sys.label}</span>
                       <span className="text-[11px] opacity-80 font-normal">{sys.desc}</span>
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </div>
@@ -221,8 +237,10 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
                   isAnnualBilling ? "bg-mint-action" : "bg-slate-blue/30"
                 }`}
               >
-                <div
-                  className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ${
+                <motion.div
+                  layout
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  className={`bg-white w-6 h-6 rounded-full shadow-md transform ${
                     isAnnualBilling ? "translate-x-6" : "translate-x-0"
                   }`}
                 />
@@ -243,9 +261,17 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
               </span>
 
               <h4 className="font-sans text-xs tracking-widest text-[#8EA3CC] uppercase font-bold mb-1">Рекомендуемый пакет</h4>
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="font-headline text-3xl font-bold tracking-tight text-white">{recommendedPlan}</span>
-                <span className="text-xs bg-mint-action text-white px-2 py-0.5 rounded uppercase font-semibold tracking-wide">
+              <div className="flex items-baseline gap-2 mb-8 h-9 overflow-hidden">
+                <motion.span 
+                  key={recommendedPlan}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="font-headline text-3xl font-bold tracking-tight text-white inline-block"
+                >
+                  {recommendedPlan}
+                </motion.span>
+                <span className="text-xs bg-mint-action text-white px-2 py-0.5 rounded uppercase font-semibold tracking-wide self-center ml-2">
                   Подходит
                 </span>
               </div>
@@ -293,8 +319,16 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
                   <span className="text-xs text-[#8EA3CC]">в пересчете за месяц</span>
                 </div>
                 <div className="text-right">
-                  <div className="text-4xl font-extrabold tracking-tight text-white font-mono">
-                    {calculatedPrice.toLocaleString("ru-RU")} ₽
+                  <div className="h-10 overflow-hidden">
+                    <motion.div 
+                      key={calculatedPrice}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-4xl font-extrabold tracking-tight text-white font-mono"
+                    >
+                      {calculatedPrice.toLocaleString("ru-RU")} ₽
+                    </motion.div>
                   </div>
                   <span className="text-[11px] text-[#2AB272] bg-[#2AB272]/15 px-1.5 py-0.5 rounded font-medium mt-1 inline-block">
                     {isAnnualBilling ? "Цена зафиксирована со скидкой" : "НДС не облагается"}
@@ -302,17 +336,20 @@ export default function PricingCalculator({ onSelectCalculatedPlan }: PricingCal
                 </div>
               </div>
 
-              <button
+              <motion.button
                 type="button"
                 onClick={handleSelect}
-                className="w-full bg-mint-action hover:bg-mint-action/90 text-white font-sans text-[14px] font-semibold tracking-wider py-4 rounded transition-all duration-200 cursor-pointer active:scale-95 shadow-md flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.03, y: -2, boxShadow: "0 10px 25px -3px rgba(42, 178, 114, 0.3)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 450, damping: 15 }}
+                className="w-full bg-mint-action text-white font-sans text-[14px] font-semibold tracking-wider py-4 rounded cursor-pointer shadow-md flex items-center justify-center gap-2"
               >
                 Выбрать этот расчет в заявку
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </motion.button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

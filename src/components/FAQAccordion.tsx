@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FAQ_DATA } from "../data";
 import { Plus, Minus, Search, MessageSquare, HelpCircle } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -94,15 +95,16 @@ export default function FAQAccordion() {
                     </span>
                   </button>
 
-                  <div
-                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                      isOpen ? "max-h-60 opacity-100 border-t border-slate-blue/5 bg-surface/40" : "max-h-0 opacity-0"
-                    }`}
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden bg-surface/40"
                   >
-                    <p className="p-6 text-on-surface-variant font-sans text-[14.5px] leading-relaxed">
+                    <p className="p-6 text-on-surface-variant font-sans text-[14.5px] leading-relaxed border-t border-slate-blue/5">
                       {item.answer}
                     </p>
-                  </div>
+                  </motion.div>
                 </div>
               );
             })

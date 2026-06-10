@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SavedInquiry } from "./types";
 import { SERVICES_DATA, TARIFF_PLANS, WHY_CHOOSE_US } from "./data";
+import { motion } from "motion/react";
 
 // Custom Subcomponents
 import Header from "./components/Header";
@@ -25,6 +26,7 @@ import PricingCalculator from "./components/PricingCalculator";
 import ApproachStepper from "./components/ApproachStepper";
 import ConsultationForm from "./components/ConsultationForm";
 import FAQAccordion from "./components/FAQAccordion";
+import ContactsSection from "./components/ContactsSection";
 import ClientRequests from "./components/ClientRequests";
 import TelegramConsultant from "./components/TelegramConsultant";
 
@@ -131,7 +133,12 @@ export default function App() {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-b from-lavender-accent/5 to-transparent rounded-full blur-3xl -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-8 text-left">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-7 space-y-8 text-left"
+          >
             <span className="inline-flex items-center gap-2 bg-slate-blue/10 text-ink-dark px-3 py-1.5 text-[12px] font-semibold uppercase tracking-wider rounded select-none">
               <span className="w-2 h-2 rounded-full bg-mint-action animate-pulse" />
               Бухгалтерия для технологичного бизнеса
@@ -148,31 +155,42 @@ export default function App() {
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
-              <button
+              <motion.button
                 onClick={navigateToContacts}
-                className="bg-ink-dark hover:bg-ink-dark/90 text-white px-8 py-4 rounded font-sans text-[14px] font-semibold tracking-wider transition-all duration-200 cursor-pointer active:scale-95 shadow-md flex items-center gap-2"
+                whileHover={{ scale: 1.03, y: -2, boxShadow: "0 10px 20px -10px rgba(0,0,0,0.3)" }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                className="bg-ink-dark text-white px-8 py-4 rounded font-sans text-[14px] font-semibold tracking-wider cursor-pointer shadow-md flex items-center gap-2"
               >
                 Связаться с нами
                 <ArrowRight className="w-4 h-4 text-[#8EA3CC]" />
-              </button>
+              </motion.button>
               
               {/* This opens the Telegram bot widget instantly */}
-              <button
+              <motion.button
                 type="button"
                 onClick={() => {
                   // Direct trigger of assistant chat
                   const btn = document.querySelector(".fixed.bottom-6.right-6 > button") as HTMLButtonElement;
                   if (btn) btn.click();
                 }}
-                className="border border-ink-dark text-ink-dark px-8 py-4 rounded font-sans text-[14px] font-semibold tracking-wider hover:bg-ink-dark hover:text-white active:scale-95 transition-all flex items-center gap-2 cursor-pointer"
+                whileHover={{ scale: 1.03, y: -2, backgroundColor: "rgba(17,8,34,1)", color: "#fff" }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                className="border border-ink-dark text-ink-dark px-8 py-4 rounded font-sans text-[14px] font-semibold tracking-wider flex items-center gap-2 cursor-pointer"
               >
                 <Send className="w-4.5 h-4.5" />
                 Чат в Telegram
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-5 relative">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+            className="lg:col-span-5 relative"
+          >
             <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-high border border-slate-blue/20 relative group shadow-xl">
               <img
                 className="w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105"
@@ -184,7 +202,12 @@ export default function App() {
             </div>
 
             {/* Floating Trust Indicator Stat Card */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded border border-slate-blue/15 shadow-xl z-25 max-w-xs animate-fade-in divide-y divide-slate-blue/10">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              className="absolute -bottom-6 -left-6 bg-white p-6 rounded border border-slate-blue/15 shadow-xl z-25 max-w-xs divide-y divide-slate-blue/10"
+            >
               <div className="pb-3">
                 <div className="text-mint-action font-headline text-3xl font-bold mb-1">99.8%</div>
                 <div className="text-[11px] font-semibold font-sans tracking-widest text-[#8EA3CC] uppercase">
@@ -195,8 +218,8 @@ export default function App() {
                 <Award className="w-4 h-4 text-lavender-accent shrink-0" />
                 <span>Застраховано на 10 млн рублей по договору</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -228,11 +251,28 @@ export default function App() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.15
+                }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
             {SERVICES_DATA.map((service) => (
-              <div
+              <motion.div
                 key={service.id}
                 onClick={navigateToContacts}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                }}
                 className="p-8 md:p-10 border border-slate-blue/20 rounded flex flex-col justify-between min-h-[380px] hover:border-lavender-accent hover:shadow-lg transition-all duration-300 group bg-surface/30 cursor-pointer"
               >
                 <div className="space-y-6">
@@ -259,9 +299,9 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -271,7 +311,13 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
             {/* Visual Column */}
-            <div className="lg:col-span-5 relative">
+            <motion.div 
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-5 relative"
+            >
               <div className="aspect-square bg-surface-container-high rounded-xl overflow-hidden border border-slate-blue/20 shadow-xl relative group">
                 <img
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -283,11 +329,16 @@ export default function App() {
               </div>
               
               <div className="absolute top-1/2 -right-12 -translate-y-1/2 w-48 h-48 bg-mint-action/10 rounded-full blur-3xl -z-10" />
-            </div>
+            </motion.div>
 
             {/* copy Column */}
             <div className="lg:col-span-7 text-left space-y-8">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+              >
                 <span className="inline-block bg-mint-action/10 text-mint-action px-3 py-1 text-[11px] font-bold uppercase tracking-widest rounded mb-4">
                   Наше преимущество
                 </span>
@@ -295,9 +346,22 @@ export default function App() {
                   Почему ответственные <br />
                   компании выбирают AccountPro?
                 </h2>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-1 gap-6">
+              <motion.div 
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                  hidden: {},
+                  show: {
+                    transition: {
+                      staggerChildren: 0.15
+                    }
+                  }
+                }}
+                className="grid grid-cols-1 gap-6"
+              >
                 {[
                   {
                     id: "01",
@@ -318,7 +382,14 @@ export default function App() {
                     desc: "Вы получаете команду профессиональных бухгалтеров и юристов во главе с аттестованным главным бухгалтером, глубоко погруженным в специфику именно вашей ниши."
                   }
                 ].map((item) => (
-                  <div key={item.id} className="flex gap-4 p-5 bg-white rounded border border-slate-blue/15 hover:border-mint-action transition-all">
+                  <motion.div 
+                    key={item.id}
+                    variants={{
+                      hidden: { opacity: 0, x: 20 },
+                      show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                    }}
+                    className="flex gap-4 p-5 bg-white rounded border border-slate-blue/15 hover:border-mint-action transition-all"
+                  >
                     <div className="shrink-0 w-10 h-10 bg-slate-blue/10 rounded flex items-center justify-center">
                       {item.icon}
                     </div>
@@ -331,9 +402,9 @@ export default function App() {
                         {item.desc}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
             
           </div>
@@ -361,16 +432,40 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.15
+                }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto"
+          >
             {TARIFF_PLANS.map((plan) => {
               const isSelected = selectedTariff === plan.name;
               return (
-                <div
+                <motion.div
                   key={plan.id}
-                  className={`bg-white p-8 md:p-10 rounded-xl border flex flex-col justify-between transition-all duration-300 relative ${
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                  }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.02,
+                    boxShadow: "0 25px 50px -12px rgba(17,8,34,0.15)",
+                    borderColor: plan.isPopular ? "#2AB272" : "#110822"
+                  }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                  className={`bg-white p-8 md:p-10 rounded-xl border flex flex-col justify-between transition-colors duration-300 relative ${
                     plan.isPopular
-                      ? "border-2 border-mint-action shadow-xl hover:-translate-y-1.5"
-                      : "border-slate-blue/15 hover:border-ink-dark hover:shadow-md"
+                      ? "border-2 border-mint-action shadow-lg"
+                      : "border-slate-blue/15"
                   }`}
                 >
                   {plan.isPopular && (
@@ -401,21 +496,24 @@ export default function App() {
                     </ul>
                   </div>
 
-                  <button
+                  <motion.button
                     type="button"
                     onClick={() => handleSelectTariff(plan.name)}
-                    className={`w-full py-3.5 rounded font-sans text-[13px] font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer active:scale-95 ${
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 450, damping: 15 }}
+                    className={`w-full py-3.5 rounded font-sans text-[13px] font-bold tracking-wider uppercase cursor-pointer ${
                       plan.isPopular
-                        ? "bg-mint-action hover:bg-mint-action/90 text-white shadow-md text-[13px]"
-                        : "border border-ink-dark text-ink-dark hover:bg-ink-dark hover:text-white"
+                        ? "bg-mint-action text-white shadow-md text-[13px]"
+                        : "border border-ink-dark text-ink-dark bg-transparent"
                     }`}
                   >
                     Выбрать этот тариф
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -436,6 +534,9 @@ export default function App() {
 
       {/* FAQ Accordion with instant search Filter */}
       <FAQAccordion />
+
+      {/* Наши контакты с интерактивной схемой / картой */}
+      <ContactsSection />
 
       {/* Final Brand Footer */}
       <footer className="bg-[#110822] text-white py-16 border-t border-slate-blue/15">

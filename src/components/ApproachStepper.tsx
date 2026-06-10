@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { APPROACH_STEPS } from "../data";
 import { CheckCircle2, User, Clock, HelpCircle, ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function ApproachStepper() {
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -20,19 +21,28 @@ export default function ApproachStepper() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto"
+        >
           {/* Interactive Steps List */}
           <div className="lg:col-span-5 space-y-4">
             {APPROACH_STEPS.map((step) => {
               const isSelected = activeStep === step.id;
               return (
-                <button
+                <motion.button
                   key={step.id}
                   onClick={() => setActiveStep(step.id)}
-                  className={`w-full text-left p-5 rounded border transition-all duration-350 cursor-pointer flex gap-4 ${
+                  whileHover={{ scale: 1.015, x: isSelected ? 8 : 4 }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                  className={`w-full text-left p-5 rounded border cursor-pointer flex gap-4 ${
                     isSelected
-                      ? "border-lavender-accent bg-lavender-accent/[0.03] shadow-md translate-x-2"
-                      : "border-slate-blue/15 hover:border-ink-dark bg-white"
+                      ? "border-lavender-accent bg-lavender-accent/[0.03] shadow-md"
+                      : "border-slate-blue/15 bg-white"
                   }`}
                 >
                   <span
@@ -56,17 +66,23 @@ export default function ApproachStepper() {
                       {step.description}
                     </p>
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>
 
           {/* Stepper Details Card */}
-          <div className="lg:col-span-7 bg-surface p-6 md:p-8 rounded border border-slate-blue/20">
+          <div className="lg:col-span-7 bg-surface p-6 md:p-8 rounded border border-slate-blue/20 overflow-hidden">
             {APPROACH_STEPS.map((step) => {
               if (step.id !== activeStep) return null;
               return (
-                <div key={step.id} className="animate-fade-in space-y-6">
+                <motion.div 
+                  key={step.id} 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="space-y-6"
+                >
                   <div className="flex justify-between items-center pb-4 border-b border-slate-blue/15">
                     <div>
                       <span className="text-[11px] font-bold text-lavender-accent uppercase tracking-widest font-mono">
@@ -110,11 +126,11 @@ export default function ApproachStepper() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

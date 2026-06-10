@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, UserCheck } from "lucide-react";
+import { motion } from "motion/react";
 
 interface HeaderProps {
   onOpenConsultation: () => void;
@@ -15,6 +16,7 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
     { label: "Наш подход", href: "#approach" },
     { label: "FAQ", href: "#faq" },
     { label: "Калькулятор", href: "#calculator" },
+    { label: "Контакты", href: "#contacts" },
   ];
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
       setIsScrolled(window.scrollY > 10);
 
       // Scroll Spy
-      const sections = ["services", "approach", "faq", "calculator"];
+      const sections = ["services", "approach", "faq", "calculator", "contacts"];
       const currentScroll = window.scrollY + 120;
 
       for (const section of sections) {
@@ -106,13 +108,16 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
 
           {/* Action button */}
           <div className="hidden md:flex items-center gap-4">
-            <button
+            <motion.button
               onClick={onOpenConsultation}
-              className="bg-mint-action text-white px-6 py-3 font-sans text-[14px] font-semibold tracking-wider rounded transition-all duration-200 hover:bg-mint-action/90 active:scale-95 shadow-sm inline-flex items-center gap-2 cursor-pointer"
+              whileHover={{ scale: 1.04, y: -1, boxShadow: "0 10px 15px -3px rgba(42, 178, 114, 0.2)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 450, damping: 15 }}
+              className="bg-mint-action text-white px-6 py-3 font-sans text-[14px] font-semibold tracking-wider rounded shadow-sm inline-flex items-center gap-2 cursor-pointer"
             >
               Получить консультацию
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </motion.button>
           </div>
 
           {/* Hamburger Menu Toggle */}
