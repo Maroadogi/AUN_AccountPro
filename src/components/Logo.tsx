@@ -14,25 +14,25 @@ export function LogoMark({ className = "w-10 h-10" }: LogoMarkProps) {
     >
       <defs>
         <linearGradient id="ribbonGradComp" x1="10%" y1="90%" x2="90%" y2="10%">
-          <stop offset="0%" stop-color="#8021F3" />
-          <stop offset="50%" stop-color="#4361EE" />
-          <stop offset="100%" stop-color="#4CC9F0" />
+          <stop offset="0%" stopColor="#8021F3" />
+          <stop offset="50%" stopColor="#4361EE" />
+          <stop offset="100%" stopColor="#4CC9F0" />
         </linearGradient>
         <linearGradient id="centerGradComp" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#00F5FF" />
-          <stop offset="100%" stop-color="#0055FF" />
+          <stop offset="0%" stopColor="#00F5FF" />
+          <stop offset="100%" stopColor="#0055FF" />
         </linearGradient>
         <linearGradient id="floatTopComp" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#48CAE4" />
-          <stop offset="100%" stop-color="#4361EE" />
+          <stop offset="0%" stopColor="#48CAE4" />
+          <stop offset="100%" stopColor="#4361EE" />
         </linearGradient>
         <linearGradient id="floatMidComp" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#B5179E" />
-          <stop offset="100%" stop-color="#7209B7" />
+          <stop offset="0%" stopColor="#B5179E" />
+          <stop offset="100%" stopColor="#7209B7" />
         </linearGradient>
         <linearGradient id="floatBotComp" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#7209B7" />
-          <stop offset="100%" stop-color="#3F37C9" />
+          <stop offset="0%" stopColor="#7209B7" />
+          <stop offset="100%" stopColor="#3F37C9" />
         </linearGradient>
       </defs>
 
